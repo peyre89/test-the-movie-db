@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from 'pages/About';
 import Home from 'pages/Home';
 import Movie from 'pages/Movie';
+import MyList from 'pages/MyList';
 
 import { getConfiguration } from 'api';
 import { AxiosResponse } from 'axios';
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route exact path="/movie/:id">
             <Movie />
+          </Route>
+          <Route exact path="/my-list">
+            <MyList />
           </Route>
           <Route exact path="/">
             <Home />
