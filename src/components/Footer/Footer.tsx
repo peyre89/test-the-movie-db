@@ -1,9 +1,7 @@
+import './Footer.scss';
+
 function Footer() {
-  return (
-    <footer className="Footer" style={{ marginTop: 64 }}>
-      Footer...
-    </footer>
-  );
+  return <footer className="Footer">Footer...</footer>;
 }
 
 export default Footer;
