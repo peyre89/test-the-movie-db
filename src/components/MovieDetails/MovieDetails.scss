@@ -1,0 +1,16 @@
+.MovieDetails {
+  .poster-and-content {
+    display: grid;
+    column-gap: 32px;
+    grid-template-columns: 1fr 3fr;
+
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      margin-top: 32px;
+    }
+  }
+}

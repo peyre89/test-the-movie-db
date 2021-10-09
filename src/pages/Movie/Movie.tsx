@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { getMovieById } from 'api';
 import { Movie as MovieInterface } from 'types';
 import Layout from 'components/Layout';
+import MovieDetails from 'components/MovieDetails';
 
 interface MyParams {
   id: string;
@@ -32,8 +33,7 @@ function Movie() {
   return (
     <Layout>
       <div className="Movie">
-        <h2>{movie.title}</h2>
-        <p>{movie.release_date}</p>
+        <MovieDetails movie={movie} />
       </div>
     </Layout>
   );
