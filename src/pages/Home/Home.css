@@ -1,0 +1,6 @@
+.Home ul {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+}

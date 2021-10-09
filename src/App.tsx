@@ -12,7 +12,7 @@ import './App.css';
 
 declare global {
   interface Window {
-    config: object;
+    config: any;
   }
 }
 
