@@ -1,3 +1,5 @@
+import FeatureList from 'features/list/FeatureList';
+
 import { Genre, Movie } from 'types';
 
 import './MovieDetails.scss';
@@ -28,6 +30,8 @@ function MovieDetails(props: MovieCardProps) {
           </p>
 
           <p>{overview}</p>
+
+          <FeatureList id={movie.id} />
         </div>
       </div>
     </div>
