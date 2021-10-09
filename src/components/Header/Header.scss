@@ -1,0 +1,10 @@
+header.Header {
+  ul {
+    list-style: none;
+    display: flex;
+
+    li:not(:first-child) {
+      margin-left: 16px;
+    }
+  }
+}
