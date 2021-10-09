@@ -1,10 +1,5 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import About from 'pages/About';
-import Home from 'pages/Home';
-import Movie from 'pages/Movie';
-import MyList from 'pages/MyList';
 
 import { getConfiguration } from 'api';
 import { AxiosResponse } from 'axios';
@@ -16,6 +11,11 @@ declare global {
     config: any;
   }
 }
+
+const About = lazy(() => import('./pages/About'));
+const Movie = lazy(() => import('./pages/Movie'));
+const MyList = lazy(() => import('./pages/MyList'));
+const Home = lazy(() => import('./pages/Home'));
 
 function App() {
   const [config, setConfig] = useState<object | null>(null);
@@ -40,20 +40,22 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/movie/:id">
-            <Movie />
-          </Route>
-          <Route exact path="/my-list">
-            <MyList />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact path="/about">
+              <About />
+            </Route>
+            <Route exact path="/movie/:id">
+              <Movie />
+            </Route>
+            <Route exact path="/my-list">
+              <MyList />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Suspense>
       </Router>
     </div>
   );
