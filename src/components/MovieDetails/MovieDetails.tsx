@@ -31,7 +31,7 @@ function MovieDetails(props: MovieCardProps) {
 
           <p>{overview}</p>
 
-          <FeatureList id={movie.id} />
+          <FeatureList movie={movie} />
         </div>
       </div>
     </div>

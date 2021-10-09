@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Movie } from 'types';
 
-export type SliceState = number[];
+export type SliceState = Movie[];
 
 const initialState: SliceState = [];
 
@@ -10,12 +11,12 @@ export const listSlice = createSlice({
     movies: initialState,
   },
   reducers: {
-    add: (state, action: PayloadAction<number>) => {
+    add: (state, action: PayloadAction<Movie>) => {
       state.movies.push(action.payload);
     },
     remove: (state, action: PayloadAction<number>) => {
       const filtered: SliceState = state.movies.filter(
-        id => id !== action.payload
+        (movie: Movie) => movie.id !== action.payload
       );
 
       state.movies = filtered;

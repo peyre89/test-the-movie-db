@@ -1,23 +1,29 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import { RootState } from 'store';
+import { Movie } from 'types';
 import { add, remove, SliceState } from './listSlice';
 
 interface FeatureListProps {
-  id: number;
+  movie: Movie;
 }
 
-function FeatureList({ id }: FeatureListProps) {
+function FeatureList(props: FeatureListProps) {
+  const { movie } = props;
+  const { id } = movie;
+
   const list: SliceState = useSelector((state: RootState) => state.list.movies);
   const dispatch = useDispatch();
 
+  const hasId = list.some((movie: Movie) => movie.id === id);
+
   const handleClick = () => {
-    list.includes(id) ? dispatch(remove(id)) : dispatch(add(id));
+    hasId ? dispatch(remove(id)) : dispatch(add(movie));
   };
 
   return (
     <button onClick={handleClick}>
-      {list.includes(id) ? 'Remove from my list' : 'Add to my list'}
+      {hasId ? 'Remove from my list' : 'Add to my list'}
     </button>
   );
 }
