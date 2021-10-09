@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { getMovieUpcoming } from 'api';
 import { ApiResults, Movie } from 'types';
+import Layout from 'components/Layout';
 
 function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -23,15 +24,17 @@ function Home() {
   }
 
   return (
-    <div className="Home">
-      <ul>
-        {movies.map((movie: Movie) => (
-          <li key={movie.id}>
-            <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Layout>
+      <div className="Home">
+        <ul>
+          {movies.map((movie: Movie) => (
+            <li key={movie.id}>
+              <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Layout>
   );
 }
 
