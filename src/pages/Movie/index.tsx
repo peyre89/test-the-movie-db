@@ -1,4 +1,9 @@
+import { useEffect, useState } from 'react';
+import { AxiosResponse } from 'axios';
 import { useParams } from 'react-router';
+
+import { getMovieById } from 'api';
+import { Movie as MovieInterface } from 'types';
 
 interface MyParams {
   id: string;
@@ -7,7 +12,28 @@ interface MyParams {
 function Movie() {
   let { id } = useParams<MyParams>();
 
-  return <div className="Movie">Page Movie {id}</div>;
+  const [movie, setMovie] = useState<MovieInterface | null>(null);
+
+  useEffect(() => {
+    getMovieById(id)
+      .then((response: AxiosResponse) => {
+        setMovie(response.data);
+      })
+      .catch(() => {
+        console.error('getMovieById error');
+      });
+  }, [id]);
+
+  if (movie === null) {
+    return null;
+  }
+
+  return (
+    <div className="Movie">
+      <h2>{movie.title}</h2>
+      <p>{movie.release_date}</p>
+    </div>
+  );
 }
 
 export default Movie;

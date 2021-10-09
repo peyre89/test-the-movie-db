@@ -12,3 +12,4 @@ const instance: AxiosInstance = axios.create({
 });
 
 export const getMovieUpcoming = () => instance.get('/movie/upcoming');
+export const getMovieById = (id: string) => instance.get(`/movie/${id}`);
