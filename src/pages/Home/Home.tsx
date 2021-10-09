@@ -6,7 +6,7 @@ import { ApiResults, Movie } from 'types';
 import Layout from 'components/Layout';
 import MovieCard from 'components/MovieCard';
 
-import './Home.css';
+import './Home.scss';
 
 function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
