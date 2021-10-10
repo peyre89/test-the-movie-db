@@ -1,4 +1,9 @@
 header.Header {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+
   ul {
     display: flex;
 
