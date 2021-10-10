@@ -16,6 +16,7 @@ const About = lazy(() => import('./pages/About'));
 const Movie = lazy(() => import('./pages/Movie'));
 const MyList = lazy(() => import('./pages/MyList'));
 const Home = lazy(() => import('./pages/Home'));
+const NoMatch = lazy(() => import('./pages/NoMatch'));
 
 function App() {
   const [config, setConfig] = useState<object | null>(null);
@@ -53,6 +54,9 @@ function App() {
             </Route>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="*">
+              <NoMatch />
             </Route>
           </Switch>
         </Suspense>
