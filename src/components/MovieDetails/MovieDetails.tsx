@@ -2,6 +2,8 @@ import FeatureList from 'features/list/FeatureList';
 
 import { Genre, Movie } from 'types';
 
+import { humanizeRuntime } from 'utils';
+
 import './MovieDetails.scss';
 
 interface MovieCardProps {
@@ -25,7 +27,7 @@ function MovieDetails(props: MovieCardProps) {
           <h1>{title}</h1>
 
           <p>
-            {release_date} / {runtime} minutes /{' '}
+            {release_date} / {humanizeRuntime(runtime)} /{' '}
             {commaSeparatedGenres.join(', ')}
           </p>
 
