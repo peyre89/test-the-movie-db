@@ -12,13 +12,16 @@ function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    getMovieUpcoming()
-      .then((response: AxiosResponse<ApiResults>) => {
+    const fetchData = async () => {
+      try {
+        const response: AxiosResponse<ApiResults> = await getMovieUpcoming();
         setMovies(response.data.results);
-      })
-      .catch(() => {
+      } catch (error) {
         console.error('getMovieUpcoming error');
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (movies.length === 0) {

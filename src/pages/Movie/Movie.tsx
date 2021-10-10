@@ -17,13 +17,16 @@ function Movie() {
   const [movie, setMovie] = useState<MovieInterface | null>(null);
 
   useEffect(() => {
-    getMovieById(id)
-      .then((response: AxiosResponse) => {
+    const fetchData = async () => {
+      try {
+        const response: AxiosResponse = await getMovieById(id);
         setMovie(response.data);
-      })
-      .catch(() => {
+      } catch (error) {
         console.error('getMovieById error');
-      });
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   if (movie === null) {
