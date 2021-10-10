@@ -4,6 +4,8 @@ import { Genre, Movie } from 'types';
 
 import { humanizeRuntime } from 'utils';
 
+import Chip from '@mui/material/Chip';
+
 import './MovieDetails.scss';
 
 interface MovieCardProps {
@@ -13,8 +15,6 @@ interface MovieCardProps {
 function MovieDetails(props: MovieCardProps) {
   const { movie } = props;
   const { genres, overview, poster_path, release_date, runtime, title } = movie;
-
-  const commaSeparatedGenres = genres.map((genre: Genre) => genre.name);
 
   return (
     <div className="MovieDetails">
@@ -27,11 +27,18 @@ function MovieDetails(props: MovieCardProps) {
           <h1>{title}</h1>
 
           <p>
-            {release_date} / {humanizeRuntime(runtime)} /{' '}
-            {commaSeparatedGenres.join(', ')}
+            {release_date} / {humanizeRuntime(runtime)}
           </p>
 
           <p>{overview}</p>
+
+          <ul>
+            {genres.map((genre: Genre) => (
+              <li key={genre.id}>
+                <Chip label={genre.name} variant="outlined" disabled />
+              </li>
+            ))}
+          </ul>
 
           <FeatureList movie={movie} />
         </div>

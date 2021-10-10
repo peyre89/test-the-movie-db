@@ -12,5 +12,15 @@
     p {
       margin-top: 32px;
     }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -16px 0 0 -16px;
+
+      li {
+        margin: 16px 0 0 16px;
+      }
+    }
   }
 }
