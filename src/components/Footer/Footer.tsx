@@ -14,6 +14,7 @@ function Footer() {
         aria-label="GitHub"
         size="large"
         sx={{ color: '#000' }}
+        data-testid="footer-a"
       >
         <GitHubIcon fontSize="inherit" />
       </IconButton>
