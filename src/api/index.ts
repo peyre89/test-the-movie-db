@@ -12,7 +12,7 @@ const instance: AxiosInstance = axios.create({
 });
 
 // Special method
-export const getConfiguration = () => instance.get('configuration');
+export const getConfiguration = () => instance.get('/configuration');
 
 export const getMovieUpcoming = () => instance.get('/movie/upcoming');
 export const getMovieById = (id: string) => instance.get(`/movie/${id}`);
