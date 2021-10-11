@@ -4,7 +4,9 @@ import { useParams } from 'react-router';
 
 import { getMovieById } from 'api';
 import { Movie as MovieInterface } from 'types';
+
 import Layout from 'components/Layout';
+import Loading from 'components/Loading';
 import MovieDetails from 'components/MovieDetails';
 
 import './Movie.scss';
@@ -22,7 +24,10 @@ function Movie() {
     const fetchData = async () => {
       try {
         const response: AxiosResponse = await getMovieById(id);
-        setMovie(response.data);
+
+        setTimeout(() => {
+          setMovie(response.data);
+        }, 300);
       } catch (error) {
         console.error('getMovieById error');
       }
@@ -34,7 +39,9 @@ function Movie() {
   if (movie === null) {
     return (
       <Layout>
-        <div>Loading...</div>
+        <div className="page-movie">
+          <Loading />
+        </div>
       </Layout>
     );
   }

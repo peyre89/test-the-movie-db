@@ -3,7 +3,9 @@ import { AxiosResponse } from 'axios';
 
 import { getMovieUpcoming } from 'api';
 import { ApiResults, Movie } from 'types';
+
 import Layout from 'components/Layout';
+import Loading from 'components/Loading';
 import MovieCard from 'components/MovieCard';
 
 import './Home.scss';
@@ -15,7 +17,10 @@ function Home() {
     const fetchData = async () => {
       try {
         const response: AxiosResponse<ApiResults> = await getMovieUpcoming();
-        setMovies(response.data.results);
+
+        setTimeout(() => {
+          setMovies(response.data.results);
+        }, 500);
       } catch (error) {
         console.error('getMovieUpcoming error');
       }
@@ -27,7 +32,9 @@ function Home() {
   if (movies.length === 0) {
     return (
       <Layout>
-        <div>Loading...</div>
+        <div className="page-home">
+          <Loading />
+        </div>
       </Layout>
     );
   }
