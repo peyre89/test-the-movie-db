@@ -32,7 +32,11 @@ function Movie() {
   }, [id]);
 
   if (movie === null) {
-    return null;
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    );
   }
 
   return (

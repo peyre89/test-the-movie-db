@@ -25,7 +25,11 @@ function Home() {
   }, []);
 
   if (movies.length === 0) {
-    return null;
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    );
   }
 
   return (
