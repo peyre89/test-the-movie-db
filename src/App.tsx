@@ -22,16 +22,19 @@ function App() {
   const [config, setConfig] = useState<object | null>(null);
 
   useEffect(() => {
-    getConfiguration()
-      .then((response: AxiosResponse) => {
+    const fetchData = async () => {
+      try {
+        const response: AxiosResponse = await getConfiguration();
         const config = response.data;
 
         window.config = config;
         setConfig(config);
-      })
-      .catch(() => {
+      } catch (error) {
         console.error('getConfiguration error');
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (config === null) {
