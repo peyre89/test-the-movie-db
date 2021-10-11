@@ -1,6 +1,7 @@
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 
+import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 
 type LayoutProps = {
@@ -9,12 +10,12 @@ type LayoutProps = {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div className="Layout">
+    <Container maxWidth="md" sx={{ mt: 8 }}>
       <Header />
       <Divider sx={{ my: 4 }} />
       {children}
       <Footer />
-    </div>
+    </Container>
   );
 }
 
