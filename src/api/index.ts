@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const API_URL = 'https://api.themoviedb.org/3';
@@ -12,7 +12,10 @@ const instance: AxiosInstance = axios.create({
 });
 
 // Special method
-export const getConfiguration = () => instance.get('/configuration');
+export const getConfiguration = (): Promise<AxiosResponse> =>
+  instance.get('/configuration');
 
-export const getMovieUpcoming = () => instance.get('/movie/upcoming');
-export const getMovieById = (id: string) => instance.get(`/movie/${id}`);
+export const getMovieUpcoming = (): Promise<AxiosResponse> =>
+  instance.get('/movie/upcoming');
+export const getMovieById = (id: string): Promise<AxiosResponse> =>
+  instance.get(`/movie/${id}`);
