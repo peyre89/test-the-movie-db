@@ -14,7 +14,7 @@ function MyList() {
 
   return (
     <Layout>
-      <div className="MyList">
+      <div className="page-my-list">
         <ul>
           {list.map((movie: Movie) => (
             <li key={movie.id}>

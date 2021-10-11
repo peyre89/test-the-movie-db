@@ -30,7 +30,7 @@ function Home() {
 
   return (
     <Layout>
-      <div className="Home">
+      <div className="page-home">
         <ul>
           {movies.map((movie: Movie) => (
             <li key={movie.id}>

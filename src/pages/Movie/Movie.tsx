@@ -7,6 +7,8 @@ import { Movie as MovieInterface } from 'types';
 import Layout from 'components/Layout';
 import MovieDetails from 'components/MovieDetails';
 
+import './Movie.scss';
+
 interface MyParams {
   id: string;
 }
@@ -35,7 +37,7 @@ function Movie() {
 
   return (
     <Layout>
-      <div className="Movie">
+      <div className="page-movie">
         <MovieDetails movie={movie} />
       </div>
     </Layout>

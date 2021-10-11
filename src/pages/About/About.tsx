@@ -2,10 +2,12 @@ import Layout from 'components/Layout';
 
 import { Typography } from '@mui/material';
 
+import './About.scss';
+
 function About() {
   return (
     <Layout>
-      <div className="About">
+      <div className="page-about">
         <Typography>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
