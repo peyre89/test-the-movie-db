@@ -5,6 +5,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import Configuration from 'Configuration';
 import Routes from 'Routes';
 
+import CssBaseline from '@mui/material/CssBaseline';
+
+import './App.scss';
+
 declare global {
   interface Window {
     config: any;
@@ -13,13 +17,17 @@ declare global {
 
 function App() {
   return (
-    <Configuration>
-      <Provider store={store}>
-        <HelmetProvider>
-          <Routes />
-        </HelmetProvider>
-      </Provider>
-    </Configuration>
+    <>
+      <CssBaseline />
+
+      <Configuration>
+        <Provider store={store}>
+          <HelmetProvider>
+            <Routes />
+          </HelmetProvider>
+        </Provider>
+      </Configuration>
+    </>
   );
 }
 
