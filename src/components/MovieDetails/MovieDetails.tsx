@@ -4,6 +4,7 @@ import { Genre, Movie } from 'types';
 
 import { humanizeRuntime } from 'utils';
 
+import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 
 import './MovieDetails.scss';
@@ -40,7 +41,9 @@ function MovieDetails(props: MovieCardProps) {
             ))}
           </ul>
 
-          <FeatureList movie={movie} />
+          <Box sx={{ mt: 2 }}>
+            <FeatureList movie={movie} />
+          </Box>
         </div>
       </div>
     </div>
