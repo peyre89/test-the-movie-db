@@ -9,6 +9,3 @@ const instance: AxiosInstance = axios.create({
 });
 
 export default instance;
-
-export const getConfiguration = (): Promise<AxiosResponse> =>
-  instance.get('/configuration');
