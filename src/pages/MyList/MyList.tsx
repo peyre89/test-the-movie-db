@@ -12,11 +12,17 @@ import './MyList.scss';
 function MyList() {
   const list: SliceState = useSelector((state: RootState) => state.list.movies);
 
+  const data = [...list];
+
+  data.sort((a: Movie, b: Movie) => {
+    return a.title.localeCompare(b.title);
+  });
+
   return (
     <Layout>
       <div className="page-my-list">
         <ul>
-          {list.map((movie: Movie) => (
+          {data.map((movie: Movie) => (
             <li key={movie.id}>
               <MovieCard movie={movie} />
             </li>

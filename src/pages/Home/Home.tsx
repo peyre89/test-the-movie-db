@@ -18,8 +18,14 @@ function Home() {
       try {
         const response: AxiosResponse<ApiResults> = await getMovieUpcoming();
 
+        const data = response.data.results;
+
+        data.sort((a: Movie, b: Movie) => {
+          return a.title.localeCompare(b.title);
+        });
+
         setTimeout(() => {
-          setMovies(response.data.results);
+          setMovies(data);
         }, 500);
       } catch (error) {
         console.error('getMovieUpcoming error');
