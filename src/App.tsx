@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { getConfiguration } from 'api';
 import { AxiosResponse } from 'axios';
 
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+
 declare global {
   interface Window {
     config: any;
@@ -26,7 +29,10 @@ function App() {
         const config = response.data;
 
         window.config = config;
-        setConfig(config);
+
+        setTimeout(() => {
+          setConfig(config);
+        }, 2000);
       } catch (error) {
         console.error('getConfiguration error');
       }
@@ -36,7 +42,11 @@ function App() {
   }, []);
 
   if (config === null) {
-    return <div>Loading configuration...</div>;
+    return (
+      <Box sx={{ color: 'grey.500' }}>
+        <LinearProgress color="inherit" />
+      </Box>
+    );
   }
 
   return (
