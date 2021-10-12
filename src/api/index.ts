@@ -8,11 +8,7 @@ const instance: AxiosInstance = axios.create({
   },
 });
 
+export default instance;
+
 export const getConfiguration = (): Promise<AxiosResponse> =>
   instance.get('/configuration');
-
-export const getMovieUpcoming = (): Promise<AxiosResponse> =>
-  instance.get('/movie/upcoming');
-
-export const getMovieById = (id: string): Promise<AxiosResponse> =>
-  instance.get(`/movie/${id}`);

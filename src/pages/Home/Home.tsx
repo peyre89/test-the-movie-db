@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-import { getMovieUpcoming } from 'api';
+import instance from 'api';
 import { ApiResults, Movie } from 'types';
 
 import Seo from 'components/Seo';
@@ -15,25 +15,36 @@ function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response: AxiosResponse<ApiResults> = await getMovieUpcoming();
+    let timer: ReturnType<typeof setTimeout>;
+    const source = axios.CancelToken.source();
 
+    instance
+      .get('/movie/upcoming', {
+        cancelToken: source.token,
+      })
+      .then((response: AxiosResponse<ApiResults>) => {
         const data = response.data.results;
 
         data.sort((a: Movie, b: Movie) => {
           return a.title.localeCompare(b.title);
         });
 
-        setTimeout(() => {
+        timer = setTimeout(() => {
           setMovies(data);
         }, 500);
-      } catch (error) {
-        console.error('getMovieUpcoming error');
-      }
-    };
+      })
+      .catch(error => {
+        if (axios.isCancel(error)) {
+          console.log('Axios cancel: ' + error.message);
+        } else {
+          console.log('Axios error: ' + error.message);
+        }
+      });
 
-    fetchData();
+    return () => {
+      clearTimeout(timer);
+      source.cancel('Home got unmounted');
+    };
   }, []);
 
   if (movies.length === 0) {

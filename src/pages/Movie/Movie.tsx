@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
 
-import { getMovieById } from 'api';
+import instance from 'api';
 import { Movie as MovieInterface } from 'types';
 
 import Seo from 'components/Seo';
@@ -22,19 +22,30 @@ function Movie() {
   const [movie, setMovie] = useState<MovieInterface>();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response: AxiosResponse = await getMovieById(id);
+    let timer: ReturnType<typeof setTimeout>;
+    const source = axios.CancelToken.source();
 
-        setTimeout(() => {
+    instance
+      .get(`/movie/${id}`, {
+        cancelToken: source.token,
+      })
+      .then((response: AxiosResponse) => {
+        timer = setTimeout(() => {
           setMovie(response.data);
         }, 300);
-      } catch (error) {
-        console.error('getMovieById error');
-      }
-    };
+      })
+      .catch(error => {
+        if (axios.isCancel(error)) {
+          console.log('Axios cancel: ' + error.message);
+        } else {
+          console.log('Axios error: ' + error.message);
+        }
+      });
 
-    fetchData();
+    return () => {
+      clearTimeout(timer);
+      source.cancel('Movie got unmounted');
+    };
   }, [id]);
 
   if (movie === undefined) {
