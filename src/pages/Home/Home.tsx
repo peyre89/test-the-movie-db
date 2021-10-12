@@ -17,8 +17,6 @@ function Home() {
   const [{ data }] = useAxios('/movie/upcoming');
 
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-
     if (data) {
       const response = data.results;
 
@@ -26,14 +24,8 @@ function Home() {
         return a.title.localeCompare(b.title);
       });
 
-      timer = setTimeout(() => {
-        setMovies(response);
-      }, 500);
+      setMovies(response);
     }
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, [data]);
 
   if (movies.length === 0) {
