@@ -1,19 +1,18 @@
+/**
+ * Method to convert the duration of a movie into something easier to read.
+ */
 function humanizeRuntime(runtime: number) {
-  let hours: number = 0;
-  let minutes: number = runtime;
+  const ONE_HOUR = 60;
 
-  while (minutes >= 60) {
-    hours++;
-    minutes = minutes - 60;
-  }
+  const hours = Math.floor(runtime / ONE_HOUR);
+  const minutes = runtime % ONE_HOUR;
 
-  const minutesWithLeadingZero: string = String(minutes).padStart(2, '0');
+  const minutesFormatted = String(minutes).padStart(2, '0');
 
-  const hoursFormatted: string = hours > 0 ? `${hours}h` : '';
-  const minutesFormatted: string =
-    minutes > 0 ? `${minutesWithLeadingZero}m` : '';
+  const h = hours > 0 ? `${hours}h` : '';
+  const m = minutes > 0 ? `${minutesFormatted}min` : '';
 
-  return `${hoursFormatted} ${minutesFormatted}`.trim();
+  return `${h} ${m}`.trim();
 }
 
 export { humanizeRuntime };
