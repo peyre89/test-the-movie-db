@@ -8,6 +8,8 @@ import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import MovieCard from 'components/MovieCard';
 
+import Box from '@mui/system/Box';
+
 import './MyList.scss';
 
 function MyList() {
@@ -25,13 +27,19 @@ function MyList() {
 
       <Layout>
         <div className="page-my-list">
-          <ul>
-            {data.map((movie: Movie) => (
-              <li key={movie.id}>
-                <MovieCard movie={movie} />
-              </li>
-            ))}
-          </ul>
+          {data.length === 0 ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+              You don't have any movie in your list :(
+            </Box>
+          ) : (
+            <ul>
+              {data.map((movie: Movie) => (
+                <li key={movie.id}>
+                  <MovieCard movie={movie} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </Layout>
     </>
