@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AxiosResponse } from 'axios';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 import { getMovieById } from 'api';
 import { Movie as MovieInterface } from 'types';
