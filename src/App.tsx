@@ -51,7 +51,7 @@ function App() {
 
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={null}>
         <Switch>
           <Route exact path="/about">
             <About />
