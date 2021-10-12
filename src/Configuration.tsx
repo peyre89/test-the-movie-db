@@ -32,7 +32,7 @@ function Configuration({ children }: ConfigurationProps) {
     fetchData();
   }, []);
 
-  if (config === null) {
+  if (config === undefined) {
     return (
       <Box sx={{ color: 'grey.500' }}>
         <LinearProgress color="inherit" />
