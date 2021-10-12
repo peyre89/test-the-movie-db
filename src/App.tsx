@@ -1,8 +1,9 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { getConfiguration } from 'api';
 import { AxiosResponse } from 'axios';
+
+import Routes from 'Routes';
 
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -12,12 +13,6 @@ declare global {
     config: any;
   }
 }
-
-const About = lazy(() => import('./pages/About'));
-const Movie = lazy(() => import('./pages/Movie'));
-const MyList = lazy(() => import('./pages/MyList'));
-const Home = lazy(() => import('./pages/Home'));
-const NoMatch = lazy(() => import('./pages/NoMatch'));
 
 function App() {
   const [config, setConfig] = useState<object | null>(null);
@@ -49,29 +44,7 @@ function App() {
     );
   }
 
-  return (
-    <Router>
-      <Suspense fallback={null}>
-        <Switch>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/movie/:id">
-            <Movie />
-          </Route>
-          <Route exact path="/my-list">
-            <MyList />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="*">
-            <NoMatch />
-          </Route>
-        </Switch>
-      </Suspense>
-    </Router>
-  );
+  return <Routes />;
 }
 
 export default App;
