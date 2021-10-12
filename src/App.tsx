@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import { getConfiguration } from 'api';
 import { AxiosResponse } from 'axios';
 
+import store from 'store';
+import { Provider } from 'react-redux';
+import { HelmetProvider } from 'react-helmet-async';
+
 import Routes from 'Routes';
 
 import Box from '@mui/material/Box';
@@ -44,7 +48,13 @@ function App() {
     );
   }
 
-  return <Routes />;
+  return (
+    <Provider store={store}>
+      <HelmetProvider>
+        <Routes />
+      </HelmetProvider>
+    </Provider>
+  );
 }
 
 export default App;
