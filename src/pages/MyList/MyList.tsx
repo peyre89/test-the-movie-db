@@ -4,6 +4,7 @@ import { SliceState } from 'features/list/listSlice';
 import { RootState } from 'store';
 import { Movie } from 'types';
 
+import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import MovieCard from 'components/MovieCard';
 
@@ -19,17 +20,21 @@ function MyList() {
   });
 
   return (
-    <Layout>
-      <div className="page-my-list">
-        <ul>
-          {data.map((movie: Movie) => (
-            <li key={movie.id}>
-              <MovieCard movie={movie} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Layout>
+    <>
+      <Seo title="My list" description="My list of movies" />
+
+      <Layout>
+        <div className="page-my-list">
+          <ul>
+            {data.map((movie: Movie) => (
+              <li key={movie.id}>
+                <MovieCard movie={movie} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Layout>
+    </>
   );
 }
 

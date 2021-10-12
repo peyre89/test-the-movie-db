@@ -6,11 +6,14 @@ import reportWebVitals from './reportWebVitals';
 
 import store from 'store';
 import { Provider } from 'react-redux';
+import { HelmetProvider } from 'react-helmet-async';
 
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </Provider>
   </StrictMode>,
   document.getElementById('root')

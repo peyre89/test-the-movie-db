@@ -4,6 +4,7 @@ import { AxiosResponse } from 'axios';
 import { getMovieUpcoming } from 'api';
 import { ApiResults, Movie } from 'types';
 
+import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import Loading from 'components/Loading';
 import MovieCard from 'components/MovieCard';
@@ -46,17 +47,24 @@ function Home() {
   }
 
   return (
-    <Layout>
-      <div className="page-home">
-        <ul>
-          {movies.map((movie: Movie) => (
-            <li key={movie.id}>
-              <MovieCard movie={movie} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Layout>
+    <>
+      <Seo
+        title="Test The Movie DB"
+        description="A simple app to play with the API of The Movie DB website!"
+      />
+
+      <Layout>
+        <div className="page-home">
+          <ul>
+            {movies.map((movie: Movie) => (
+              <li key={movie.id}>
+                <MovieCard movie={movie} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Layout>
+    </>
   );
 }
 

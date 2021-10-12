@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { getMovieById } from 'api';
 import { Movie as MovieInterface } from 'types';
 
+import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import Loading from 'components/Loading';
 import MovieDetails from 'components/MovieDetails';
@@ -47,11 +48,15 @@ function Movie() {
   }
 
   return (
-    <Layout>
-      <div className="page-movie">
-        <MovieDetails movie={movie} />
-      </div>
-    </Layout>
+    <>
+      <Seo title={movie.title} description={movie.overview} />
+
+      <Layout>
+        <div className="page-movie">
+          <MovieDetails movie={movie} />
+        </div>
+      </Layout>
+    </>
   );
 }
 
