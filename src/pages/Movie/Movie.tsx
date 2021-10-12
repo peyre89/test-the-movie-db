@@ -19,7 +19,7 @@ interface MyParams {
 function Movie() {
   let { id } = useParams<MyParams>();
 
-  const [movie, setMovie] = useState<MovieInterface | null>(null);
+  const [movie, setMovie] = useState<MovieInterface>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +37,7 @@ function Movie() {
     fetchData();
   }, [id]);
 
-  if (movie === null) {
+  if (movie === undefined) {
     return (
       <Layout>
         <div className="page-movie">
