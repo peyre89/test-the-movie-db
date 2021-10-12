@@ -2,12 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { Movie } from 'types';
 
-interface MovieCardProps {
-  movie: Movie;
-}
-
-function MovieCard(props: MovieCardProps) {
-  const { movie } = props;
+function MovieCard({ movie }: { movie: Movie }) {
   const { id, title, poster_path } = movie;
 
   return (

@@ -8,12 +8,7 @@ import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
-interface FeatureListProps {
-  movie: Movie;
-}
-
-function FeatureList(props: FeatureListProps) {
-  const { movie } = props;
+function FeatureList({ movie }: { movie: Movie }) {
   const { id } = movie;
 
   const list: SliceState = useSelector((state: RootState) => state.list.movies);

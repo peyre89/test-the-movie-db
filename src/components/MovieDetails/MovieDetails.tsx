@@ -9,12 +9,7 @@ import Chip from '@mui/material/Chip';
 
 import './MovieDetails.scss';
 
-interface MovieCardProps {
-  movie: Movie;
-}
-
-function MovieDetails(props: MovieCardProps) {
-  const { movie } = props;
+function MovieDetails({ movie }: { movie: Movie }) {
   const { genres, overview, poster_path, release_date, runtime, title } = movie;
 
   return (
