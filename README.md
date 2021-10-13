@@ -10,12 +10,16 @@ cp .env .env.local
 
 ## What do you find in this app?
 
-- [x] 404
 - [x] Absolute Imports
 - [x] Axios
-- [x] MUI
+- [x] Axios Hooks
+- [x] Cache (Axios Hooks uses LRU)
+- [x] MUI (UI library)
+- [x] Page 404
 - [x] Prettier
+- [x] React Helmet
 - [x] React Router
+- [x] React Redux
 - [x] Route-based code splitting
 - [x] SCSS
 - [x] Tests
