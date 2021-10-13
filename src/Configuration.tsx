@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import instance from 'api';
-import axios, { AxiosResponse } from 'axios';
+import { useAxios } from 'hooks/useAxios';
 
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -13,36 +12,21 @@ type ConfigurationProps = {
 function Configuration({ children }: ConfigurationProps) {
   const [config, setConfig] = useState<object>();
 
+  const [{ data }] = useAxios('/configuration');
+
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-    const source = axios.CancelToken.source();
 
-    instance
-      .get(`/configuration`, {
-        cancelToken: source.token,
-      })
-      .then((response: AxiosResponse) => {
-        const config = response.data;
+    window.config = data;
 
-        window.config = config;
-
-        timer = setTimeout(() => {
-          setConfig(config);
-        }, 2000);
-      })
-      .catch(error => {
-        if (axios.isCancel(error)) {
-          console.log('Axios cancel: ' + error.message);
-        } else {
-          console.log('Axios error: ' + error.message);
-        }
-      });
+    timer = setTimeout(() => {
+      setConfig(data);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);
-      source.cancel('Configuration got unmounted');
     };
-  }, []);
+  }, [data]);
 
   if (config === undefined) {
     return (
