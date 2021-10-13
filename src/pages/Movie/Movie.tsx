@@ -9,6 +9,8 @@ import MovieDetails from 'components/MovieDetails';
 
 import { Movie as MovieInterface } from 'types';
 
+import Box from '@mui/material/Box';
+
 import './Movie.scss';
 
 interface MyParams {
@@ -18,7 +20,19 @@ interface MyParams {
 function Movie() {
   let { id } = useParams<MyParams>();
 
-  const [{ data }] = useAxios(`/movie/${id}`);
+  const [{ data, error }] = useAxios(`/movie/${id}`);
+
+  if (error) {
+    return (
+      <Layout>
+        <div className="page-movie">
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 16 }}>
+            Error!
+          </Box>
+        </div>
+      </Layout>
+    );
+  }
 
   if (data === undefined) {
     return (

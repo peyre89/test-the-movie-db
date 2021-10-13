@@ -9,12 +9,14 @@ import MovieCard from 'components/MovieCard';
 
 import { Movie } from 'types';
 
+import Box from '@mui/material/Box';
+
 import './Home.scss';
 
 function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
 
-  const [{ data }] = useAxios('/movie/upcoming');
+  const [{ data, error }] = useAxios('/movie/upcoming');
 
   useEffect(() => {
     if (data) {
@@ -27,6 +29,18 @@ function Home() {
       setMovies(response);
     }
   }, [data]);
+
+  if (error) {
+    return (
+      <Layout>
+        <div className="page-home">
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 16 }}>
+            Error!
+          </Box>
+        </div>
+      </Layout>
+    );
+  }
 
   if (movies.length === 0) {
     return (
