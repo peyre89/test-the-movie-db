@@ -6,10 +6,9 @@ import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import Loading from 'components/Loading';
 import MovieDetails from 'components/MovieDetails';
+import Error from 'components/Error';
 
 import { Movie as MovieInterface } from 'types';
-
-import Box from '@mui/material/Box';
 
 import './Movie.scss';
 
@@ -23,15 +22,7 @@ function Movie() {
   const [{ data, error }] = useAxios(`/movie/${id}`);
 
   if (error) {
-    return (
-      <Layout>
-        <div className="page-movie">
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 16 }}>
-            Error!
-          </Box>
-        </div>
-      </Layout>
-    );
+    return <Error error={error} />;
   }
 
   if (data === undefined) {

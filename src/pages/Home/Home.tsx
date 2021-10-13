@@ -6,10 +6,9 @@ import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import Loading from 'components/Loading';
 import MovieCard from 'components/MovieCard';
+import Error from 'components/Error';
 
 import { Movie } from 'types';
-
-import Box from '@mui/material/Box';
 
 import './Home.scss';
 
@@ -31,15 +30,7 @@ function Home() {
   }, [data]);
 
   if (error) {
-    return (
-      <Layout>
-        <div className="page-home">
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 16 }}>
-            Error!
-          </Box>
-        </div>
-      </Layout>
-    );
+    return <Error error={error} />;
   }
 
   if (movies.length === 0) {
