@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
 
-import instance from 'api';
-import { Movie as MovieInterface } from 'types';
+import { useAxios } from 'hooks/useAxios';
 
 import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import Loading from 'components/Loading';
 import MovieDetails from 'components/MovieDetails';
+
+import { Movie as MovieInterface } from 'types';
 
 import './Movie.scss';
 
@@ -19,36 +18,9 @@ interface MyParams {
 function Movie() {
   let { id } = useParams<MyParams>();
 
-  const [movie, setMovie] = useState<MovieInterface>();
+  const [{ data }] = useAxios(`/movie/${id}`);
 
-  useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const source = axios.CancelToken.source();
-
-    instance
-      .get(`/movie/${id}`, {
-        cancelToken: source.token,
-      })
-      .then((response: AxiosResponse) => {
-        timer = setTimeout(() => {
-          setMovie(response.data);
-        }, 300);
-      })
-      .catch(error => {
-        if (axios.isCancel(error)) {
-          console.log('Axios cancel: ' + error.message);
-        } else {
-          console.log('Axios error: ' + error.message);
-        }
-      });
-
-    return () => {
-      clearTimeout(timer);
-      source.cancel('Movie got unmounted');
-    };
-  }, [id]);
-
-  if (movie === undefined) {
+  if (data === undefined) {
     return (
       <Layout>
         <div className="page-movie">
@@ -58,13 +30,15 @@ function Movie() {
     );
   }
 
+  const { title, overview }: MovieInterface = data;
+
   return (
     <>
-      <Seo title={movie.title} description={movie.overview} />
+      <Seo title={title} description={overview} />
 
       <Layout>
         <div className="page-movie">
-          <MovieDetails movie={movie} />
+          <MovieDetails movie={data} />
         </div>
       </Layout>
     </>
