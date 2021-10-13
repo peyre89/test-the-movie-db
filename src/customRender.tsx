@@ -1,10 +1,10 @@
 import { FC, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 
-import store from 'store';
 import { Provider } from 'react-redux';
-
 import { BrowserRouter as Router } from 'react-router-dom';
+
+import store from 'store';
 
 const AllTheProviders: FC = ({ children }) => {
   return (

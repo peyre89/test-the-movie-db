@@ -5,11 +5,7 @@ import { useAxios } from 'hooks/useAxios';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
-type ConfigurationProps = {
-  children: JSX.Element;
-};
-
-function Configuration({ children }: ConfigurationProps) {
+function Configuration({ children }: any) {
   const [config, setConfig] = useState<object>();
 
   const [{ data }] = useAxios('/configuration');
