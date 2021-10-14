@@ -8,7 +8,7 @@ import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 import MovieCard from 'components/MovieCard';
 
-import Box from '@mui/system/Box';
+import Box from '@mui/material/Box';
 
 import './MyList.scss';
 

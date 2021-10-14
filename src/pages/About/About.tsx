@@ -1,7 +1,7 @@
 import Seo from 'components/Seo';
 import Layout from 'components/Layout';
 
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 import './About.scss';
 
