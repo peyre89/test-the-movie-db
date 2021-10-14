@@ -1,11 +1,19 @@
 import Layout from 'components/Layout';
 
+import { AxiosError } from 'axios';
+
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
 
+type ApiResponse = {
+  success: boolean;
+  status_code: number;
+  status_message: string;
+};
+
 interface ErrorProps {
-  error: any;
+  error: AxiosError<ApiResponse>;
 }
 
 /**
@@ -22,9 +30,9 @@ function Error(props: ErrorProps) {
         sx={{ display: 'flex', justifyContent: 'center', mt: 12 }}
       >
         <Alert severity="error">
-          <AlertTitle>Error {error?.response.status}</AlertTitle>
+          <AlertTitle>Error {error.response?.status}</AlertTitle>
 
-          {error?.response.data.status_message}
+          {error.response?.data.status_message}
         </Alert>
       </Box>
     </Layout>
