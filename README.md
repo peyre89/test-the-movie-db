@@ -5,7 +5,7 @@ A simple app to play with the API of The Movie DB website!
 ## Install
 
 ```
-cp .env .env.local
+make install
 ```
 
 ## What do you find in this app?
@@ -14,6 +14,7 @@ cp .env .env.local
 - [x] Axios
 - [x] Axios Hooks
 - [x] Cache (Axios Hooks uses LRU)
+- [x] Makefile
 - [x] MUI (UI library)
 - [x] Page 404
 - [x] Prettier
