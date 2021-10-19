@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/NoMatch/NoMatch.tsx"],"names":["NoMatch","className"],"mappings":"yLAIeA,MAJf,WACE,OAAO,qBAAKC,UAAU,UAAf","file":"static/js/10.9d21f372.chunk.js","sourcesContent":["function NoMatch() {\n  return <div className=\"NoMatch\">Page NoMatch</div>;\n}\n\nexport default NoMatch;\n"],"sourceRoot":""}

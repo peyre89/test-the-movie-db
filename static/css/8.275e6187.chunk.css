@@ -1,0 +1,2 @@
+footer.Footer{display:flex;justify-content:center;margin-top:64px;margin-bottom:128px}header.Header{display:grid;grid-gap:32px;gap:32px;grid-template-columns:1fr auto;align-items:baseline}header.Header ul{display:flex}header.Header ul li:not(:first-child){margin-left:16px}.page-about{margin-top:48px}
+/*# sourceMappingURL=8.275e6187.chunk.css.map */
